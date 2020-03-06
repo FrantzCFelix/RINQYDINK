@@ -27,10 +27,8 @@ module.exports = (app, sequelize) => {
       raw: true
     }).then(dbScore => {
       result.score = dbScore[0].score;
-      db.User.findByPk(dbScore[0].UserId).then(dbUsername => {
-        result.name = dbUsername.dataValues.username;
-        res.json(result);
-      });
+      result.name = dbScore[0][`User.username`];
+      res.json(result);
     });
   });
 
@@ -40,13 +38,9 @@ module.exports = (app, sequelize) => {
       order: [[`score`, `DESC`]],
       raw: true
     }).then(dbScore => {
-      // console.log(dbScore);
-      // console.log(dbScore[0].id);
-      // console.log(dbScore[0][`User.username`]);
       const highScoresObj = {
         highScores: dbScore
       };
-      console.log(highScoresObj);
       res.render(`index`, highScoresObj);
     });
   });
