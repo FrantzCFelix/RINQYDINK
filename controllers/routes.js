@@ -6,7 +6,7 @@ const db = require(`../models`);
 module.exports = (app, sequelize) => {
   // by max method
   //   app.get('/api/highscores/top', (req, res) => {
-  //     db.highScore
+  //     db.HighScore
   //       .findAll({
   //         attributes: [
   //           [sequelize.fn('max', sequelize.col('score')), 'high_score']
@@ -20,18 +20,24 @@ module.exports = (app, sequelize) => {
   //   });
 
   app.get(`/api/highscores/top`, (req, res) => {
-    db.highScore
-      .findAll({
-        order: [[`score`, `DESC`]],
-        raw: true
-      })
-      .then(dbScore => {
-        res.json(dbScore);
-      });
+    const result = {};
+    db.HighScore.findAll({
+      include: [db.User],
+      order: [[`score`, `DESC`]],
+      raw: true
+    }).then(dbScore => {
+      result.score = dbScore[0].score;
+      result.name = dbScore[0][`User.username`];
+      res.json(result);
+    });
   });
 
   app.get(`/`, (req, res) => {
-    db.highScore.findAll({}).then(dbScore => {
+    db.HighScore.findAll({
+      include: [db.User],
+      order: [[`score`, `DESC`]],
+      raw: true
+    }).then(dbScore => {
       const highScoresObj = {
         highScores: dbScore
       };
@@ -40,25 +46,21 @@ module.exports = (app, sequelize) => {
   });
 
   app.delete(`/api/highscores/:id`, (req, res) => {
-    db.highScore
-      .destroy({
-        where: {
-          id: req.params.id
-        }
-      })
-      .then(dbScore => {
-        res.json(dbScore);
-      });
+    db.HighScore.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(dbScore => {
+      res.json(dbScore);
+    });
   });
 
   app.post(`/api/highscores`, (req, res) => {
-    db.highScore
-      .create({
-        name: req.body.name,
-        score: req.body.score
-      })
-      .then(dbScore => {
-        res.json(dbScore);
-      });
+    db.HighScore.create({
+      score: req.body.score,
+      UserId: req.body.id
+    }).then(dbScore => {
+      res.json(dbScore);
+    });
   });
 };
