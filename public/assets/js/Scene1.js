@@ -1,5 +1,6 @@
 'use strict';
 
+// eslint-disable-next-line no-unused-vars
 class Scene1 extends Phaser.Scene {
   constructor() {
     // names this scene
@@ -59,7 +60,9 @@ class Scene1 extends Phaser.Scene {
   }
 
   create() {
-    this.add.text(20, 20, `Loading Game...`);
+    const xcoord = 20;
+    const ycoord = 20;
+    this.add.text(xcoord, ycoord, `Loading Game...`);
 
     // calls the scene to start when the preloading is done, 'playGam' is named in scene 2
     this.scene.start(`playGame`);

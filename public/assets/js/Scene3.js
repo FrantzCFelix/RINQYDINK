@@ -1,5 +1,6 @@
 'use strict';
 
+// eslint-disable-next-line no-unused-vars
 class Scene3 extends Phaser.Scene {
   constructor() {
     super(`endGame`);
@@ -8,6 +9,7 @@ class Scene3 extends Phaser.Scene {
   create() {
     const gameOverText = `GAME OVER!!!\n\nYou Scored ${finalScore}.`;
 
+    // eslint-disable-next-line no-magic-numbers
     this.add.text(100, 100, gameOverText);
 
     this.time.addEvent({

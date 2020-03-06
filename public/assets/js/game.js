@@ -1,6 +1,8 @@
 'use strict';
 
+// eslint-disable-next-line no-unused-vars
 let currentHighScore;
+// eslint-disable-next-line no-unused-vars
 let highScorer;
 
 $.get(`/api/highscores/top`, data => {
@@ -9,6 +11,7 @@ $.get(`/api/highscores/top`, data => {
 });
 
 // an object that 'global' variables can be stored in. Not really global, just accessible anywhere
+// eslint-disable-next-line no-unused-vars
 const gameSettings = {
   playerSpeed: 200
 };
@@ -33,4 +36,5 @@ const config = {
 };
 
 // creates a new instance of the Phaser.Game, feeding the config object
+// eslint-disable-next-line no-unused-vars
 const game = new Phaser.Game(config);

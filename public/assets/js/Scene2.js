@@ -1,6 +1,9 @@
+/* eslint-disable no-magic-numbers */
 'use strict';
 
+// eslint-disable-next-line no-unused-vars
 let finalScore;
+// eslint-disable-next-line no-unused-vars
 class Scene2 extends Phaser.Scene {
   constructor() {
     // Naming this scene, called in scene 1
@@ -131,13 +134,18 @@ class Scene2 extends Phaser.Scene {
     this.projectiles = this.add.group();
 
     // tells what to happen when two sprites interact
-    this.physics.add.collider(this.projectiles, this.powerUps, (
-      projectile,
-      powerUp
-    ) => {
-      // calls destroy method on projectile
-      projectile.destroy();
-    });
+    this.physics.add.collider(
+      this.projectiles,
+      this.powerUps,
+      (
+        projectile,
+        // eslint-disable-next-line no-unused-vars
+        powerUp
+      ) => {
+        // calls destroy method on projectile
+        projectile.destroy();
+      }
+    );
 
     // what happens when a player and powerup touch (callback)
     this.physics.add.overlap(
@@ -186,7 +194,7 @@ class Scene2 extends Phaser.Scene {
       700,
       5,
       `pixelFont`,
-      `LIVES ${ this.lives}`,
+      `LIVES ${this.lives}`,
       16
     );
     this.highScoreText = this.add.bitmapText(
@@ -214,6 +222,7 @@ class Scene2 extends Phaser.Scene {
       return;
     }
     // otherwise create a new explosion at this location
+    // eslint-disable-next-line no-unused-vars
     const explosion = new Explosion(this, player.x, player.y);
     // make player invisible and inactive
     player.disableBody(true, true);
@@ -250,6 +259,7 @@ class Scene2 extends Phaser.Scene {
   }
 
   startTween() {
+    // eslint-disable-next-line no-unused-vars
     const tween = this.tweens.add({
       targets: this.player,
       y: config.height - 100,
@@ -264,6 +274,7 @@ class Scene2 extends Phaser.Scene {
   }
 
   resetTween() {
+    // eslint-disable-next-line no-unused-vars
     const tween2 = this.tweens.add({
       targets: this.player,
       y: config.height - 32,
@@ -280,6 +291,7 @@ class Scene2 extends Phaser.Scene {
 
   // what happens when an enemy is hit
   hitEnemy(projectile, enemy) {
+    // eslint-disable-next-line no-unused-vars
     const explosion = new Explosion(this, enemy.x, enemy.y);
     projectile.destroy();
     this.resetShipPos(enemy);
@@ -338,6 +350,7 @@ class Scene2 extends Phaser.Scene {
   }
 
   shootBeam() {
+    // eslint-disable-next-line no-unused-vars
     const beam = new Beam(this);
   }
 
@@ -362,7 +375,7 @@ class Scene2 extends Phaser.Scene {
     if (number >= 0) {
       let stringNumber = String(number);
       while (stringNumber.length < (size || 2)) {
-        stringNumber = `0${ stringNumber}`;
+        stringNumber = `0${stringNumber}`;
       }
       return stringNumber;
     } else {
@@ -370,7 +383,7 @@ class Scene2 extends Phaser.Scene {
       const negative = stringNumber.substring(0, 1);
       let digits = stringNumber.substring(1);
       while (digits.length < (size || 2)) {
-        digits = `0${ digits}`;
+        digits = `0${digits}`;
       }
       return negative + digits;
     }

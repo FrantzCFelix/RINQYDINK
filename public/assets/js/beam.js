@@ -1,5 +1,6 @@
 'use strict';
 
+// eslint-disable-next-line no-unused-vars
 class Beam extends Phaser.GameObjects.Sprite {
   constructor(scene) {
     const x = scene.player.x;
@@ -13,7 +14,8 @@ class Beam extends Phaser.GameObjects.Sprite {
   }
 
   update() {
-    if (this.y < 32) {
+    const maxHeight = 32;
+    if (this.y < maxHeight) {
       this.destroy();
     }
   }
