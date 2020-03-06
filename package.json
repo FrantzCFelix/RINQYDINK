@@ -1,0 +1,25 @@
+{
+  "name": "rinqydink",
+  "version": "1.0.0",
+  "description": "Simple game, chat, leaderboard application",
+  "main": "server.js",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "jest": "^25.1.0"
+  },
+  "scripts": {
+    "test": "jest",
+    "lint": "eslint . ./**/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FrantzCFelix/RINQYDINK.git"
+  },
+  "author": "George, Frantz, Duc-Hoang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FrantzCFelix/RINQYDINK/issues"
+  },
+  "homepage": "https://github.com/FrantzCFelix/RINQYDINK#readme"
+}
