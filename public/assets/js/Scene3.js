@@ -22,13 +22,13 @@ class Scene3 extends Phaser.Scene {
 }
 
 function processScore() {
-  const name = prompt(`What is your name?`);
-  insertHighScore(name, finalScore);
+  const id = prompt(`What is your id?`);
+  insertHighScore(id, finalScore);
 }
 
-function insertHighScore(name, score) {
+function insertHighScore(id, score) {
   const highScore = {
-    name,
+    id,
     score
   };
   $.post(`/api/highscores`, highScore);
