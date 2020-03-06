@@ -6,8 +6,9 @@ let currentHighScore;
 let highScorer;
 
 $.get(`/api/highscores/top`, data => {
-  currentHighScore = data[0].score;
-  highScorer = data[0].name.toUpperCase();
+  console.log(data);
+  currentHighScore = data.score;
+  highScorer = data.name.toUpperCase();
 });
 
 // an object that 'global' variables can be stored in. Not really global, just accessible anywhere

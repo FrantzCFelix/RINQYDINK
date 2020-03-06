@@ -20,16 +20,27 @@ module.exports = (app, sequelize) => {
   //   });
 
   app.get(`/api/highscores/top`, (req, res) => {
+    const result = {};
     db.HighScore.findAll({
+      include: [db.User],
       order: [[`score`, `DESC`]],
       raw: true
     }).then(dbScore => {
-      res.json(dbScore);
+      result.score = dbScore[0].score;
+      db.User.findByPk(dbScore[0].UserId).then(dbUsername => {
+        result.name = dbUsername.dataValues.username;
+        res.json(result);
+      });
     });
   });
 
   app.get(`/`, (req, res) => {
-    db.HighScore.findAll({}).then(dbScore => {
+    db.HighScore.findAll({
+      include: [db.User],
+      order: [[`score`, `DESC`]],
+      raw: true
+    }).then(dbScore => {
+      console.log(dbScore);
       const highScoresObj = {
         highScores: dbScore
       };
