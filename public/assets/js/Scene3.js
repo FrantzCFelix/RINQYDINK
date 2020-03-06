@@ -2,7 +2,7 @@
 
 class Scene3 extends Phaser.Scene {
   constructor() {
-    super('endGame');
+    super(`endGame`);
   }
 
   create() {
@@ -20,7 +20,7 @@ class Scene3 extends Phaser.Scene {
 }
 
 function processScore() {
-  const name = prompt('What is your name?');
+  const name = prompt(`What is your name?`);
   insertHighScore(name, finalScore);
 }
 
