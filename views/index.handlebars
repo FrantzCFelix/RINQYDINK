@@ -4,27 +4,11 @@
         <ol>
             {{#each highScores}}
 
-            <li data-id="{{dataValues.id}}">
-                {{dataValues.name}} scored {{dataValues.score}}
-                <button class="delete-score" data-id="{{dataValues.id}}">Delete</button>
+            <li data-id="{{id}}">
+                {{'User.username'}} scored {{score}}
+                <button class="delete-score" data-id="{{id}}">Delete</button>
             </li>
             {{/each}}
         </ol>
     </div>
 </div>
-
-{{!-- <li class="burger-li" data-word="{{firstWord}}">
-    {{burger_name}}<br>
-    <div class="pic-div" id="picture-div-{{id}}"></div>
-    <button class="devour-burger" data-id="{{id}}" data-devoured="{{devoured}}">
-        {{#unless devoured}} Eat it! {{else}} Remake it! {{/unless}}
-    </button>
-    {{#unless devoured}}
-    <button class="delete-burger" data-id="{{id}}">
-        Send it back!
-    </button>
-    {{/unless}}
-    {{#if devoured}}
-    <button class="repeat-burger" data-id="{{id}}" data-name="{{burger_name}}">Another!</button>
-    {{/if}}
-</li> --}}

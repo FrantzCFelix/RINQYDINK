@@ -6,7 +6,6 @@ let currentHighScore;
 let highScorer;
 
 $.get(`/api/highscores/top`, data => {
-  console.log(data);
   currentHighScore = data.score;
   highScorer = data.name.toUpperCase();
 });
