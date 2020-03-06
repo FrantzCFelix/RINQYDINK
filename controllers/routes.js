@@ -26,9 +26,13 @@ module.exports = (app, sequelize) => {
       order: [[`score`, `DESC`]],
       raw: true
     }).then(dbScore => {
-      result.score = dbScore[0].score;
-      result.name = dbScore[0][`User.username`];
-      res.json(result);
+      if (dbScore[0] !== undefined) {
+        result.score = dbScore[0].score;
+        result.name = dbScore[0][`User.username`];
+        res.json(result);
+      } else {
+        res.end();
+      }
     });
   });
 
