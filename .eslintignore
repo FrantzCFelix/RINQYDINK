@@ -1,4 +1,3 @@
 node_modules/
 public/assets/js/external/
 foo.test.js
-**/ipaddr.js/**/*
