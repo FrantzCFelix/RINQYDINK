@@ -1,0 +1,26 @@
+{
+  "name": "rinqydink",
+  "version": "1.0.0",
+  "description": "Multiplayer Platformer with user accounts and a SQL database for highscores",
+  "main": "server.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node server.js",
+    "watch": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FrantzCFelix/RINQYDINK.git"
+  },
+  "author": "Frantz, George and Duc-Hoang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FrantzCFelix/RINQYDINK/issues"
+  },
+  "homepage": "https://github.com/FrantzCFelix/RINQYDINK#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "ip": "^1.1.5",
+    "socket.io": "^2.3.0"
+  }
+}
