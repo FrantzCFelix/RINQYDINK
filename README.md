@@ -1,3 +1,5 @@
 # RINQYDINK
 
 george
+Duc
+Frantz
