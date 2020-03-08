@@ -23,9 +23,12 @@
             <ul>
                 {{#each highScores}}
 
-                <li class="high-score-li">
+                <li class="high-score-li" data-id="{{id}}">
                     Score: {{score}} points.<br>
-                    On: {{createdAt}}.<br><br>
+                    On: {{createdAt}}.<br>
+                    <button class="delete-score" data-id="{{id}}">
+                        Delete This Score!
+                    </button><br><br>
                 </li>
                 {{/each}}
             </ul>
