@@ -1,5 +1,5 @@
 'use strict';
-
+const bcrypt = require(`bcryptjs`);
 const isAuthenticated = require(`../config/middleware/isAuthenticated`);
 const passport = require(`../config/passport`);
 const db = require(`../models`);
@@ -47,6 +47,14 @@ module.exports = (app, sequelize) => {
     res.render(`profile`);
   });
 
+  app.get(`/solo`, isAuthenticated, (req, res) => {
+    res.render(`solo`);
+  });
+
+  app.get(`/leaderboard`, isAuthenticated, (req, res) => {
+    res.render(`leaderboard`);
+  });
+
   app.post(`/api/login`, passport.authenticate(`local`), (req, res) => {
     const user = {user: req.user};
     res.render(`login`, user);
@@ -61,6 +69,27 @@ module.exports = (app, sequelize) => {
         const statusCode = 307;
         res.redirect(statusCode, `/api/login`);
       })
+      .catch(err => {
+        const unauthenticatedStatusCode = 401;
+        res.status(unauthenticatedStatusCode).json(err);
+      });
+  });
+
+  app.put(`/api/reset`, (req, res) => {
+    const userData = {
+      password: req.body.password
+    };
+    const rounds = 10;
+    userData.password = bcrypt.hashSync(
+      userData.password,
+      bcrypt.genSaltSync(rounds),
+      null
+    );
+    db.User.update(userData, {
+      where: {
+        id: req.user.id
+      }
+    })
       .catch(err => {
         const unauthenticatedStatusCode = 401;
         res.status(unauthenticatedStatusCode).json(err);
