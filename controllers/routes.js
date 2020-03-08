@@ -45,19 +45,20 @@ module.exports = (app, sequelize) => {
 
   app.get(`/profile`, isAuthenticated, (req, res) => {
     // console.log(req.user);
-    const userInfo = {};
     db.HighScore.findAll({
-      include: [db.User],
+      // include: [db.User],
       where: {
         UserId: req.user.id
       },
       order: [[`score`, `DESC`]],
       raw: true
     }).then(userScores => {
-      userInfo.userScores = userScores;
-      // console.log(userInfo);
+      const userInfo = {
+        highScores: userScores
+      };
+      console.log(userInfo);
+      res.render(`profile`, userInfo);
     });
-    res.render(`profile`, userInfo);
   });
 
   app.post(`/api/login`, passport.authenticate(`local`), (req, res) => {
