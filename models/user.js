@@ -17,7 +17,7 @@ module.exports = function(sequelize, DataTypes) {
   User.prototype.validPassword = function(password) {
     return bcrypt.compareSync(password, this.password);
   };
-  User.addHook(`beforeCreate`, user => {
+  User.addHook(`beforeSave`, user => {
     const rounds = 10;
     user.password = bcrypt.hashSync(
       user.password,
