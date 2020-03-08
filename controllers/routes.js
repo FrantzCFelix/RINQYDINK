@@ -44,9 +44,7 @@ module.exports = (app, sequelize) => {
   });
 
   app.get(`/profile`, isAuthenticated, (req, res) => {
-    // console.log(req.user);
     db.HighScore.findAll({
-      // include: [db.User],
       where: {
         UserId: req.user.id
       },
