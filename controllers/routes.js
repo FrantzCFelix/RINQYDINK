@@ -1,5 +1,7 @@
 'use strict';
 
+const isAuthenticated = require(`../config/middleware/isAuthenticated`);
+const passport = require(`../config/passport`);
 const db = require(`../models`);
 
 // eslint-disable-next-line no-unused-vars
@@ -19,6 +21,68 @@ module.exports = (app, sequelize) => {
   //       });
   //   });
 
+  app.get(`/`, (req, res) => {
+    if (req.user) {
+      res.redirect(`/members`);
+    }
+    res.render(`index`);
+  });
+
+  app.get(`/signup`, (req, res) => {
+    res.render(`signup`);
+  });
+
+  app.get(`/login`, (req, res) => {
+    if (req.user) {
+      res.redirect(`/members`);
+    }
+    res.render(`login`);
+  });
+
+  app.get(`/members`, isAuthenticated, (req, res) => {
+    res.render(`members`);
+  });
+
+  app.get(`/profile`, isAuthenticated, (req, res) => {
+    res.render(`profile`);
+  });
+
+  app.post(`/api/login`, passport.authenticate(`local`), (req, res) => {
+    const user = {user: req.user};
+    res.render(`login`, user);
+  });
+
+  app.post(`/api/signup`, (req, res) => {
+    db.User.create({
+      username: req.body.username,
+      password: req.body.password
+    })
+      .then(() => {
+        const statusCode = 307;
+        res.redirect(statusCode, `/api/login`);
+      })
+      .catch(err => {
+        const unauthenticatedStatusCode = 401;
+        res.status(unauthenticatedStatusCode).json(err);
+      });
+  });
+
+  app.get(`/logout`, (req, res) => {
+    req.logout();
+    res.redirect(`/`);
+  });
+
+  app.get(`/api/user_data`, (req, res) => {
+    if (!req.user) {
+      res.json({});
+    } else {
+      res.json({
+        username: req.user.username,
+        id: req.user.id
+      });
+    }
+  });
+
   app.get(`/api/highscores/top`, (req, res) => {
     const result = {};
     db.HighScore.findAll({
@@ -36,18 +100,18 @@ module.exports = (app, sequelize) => {
     });
   });
 
-  app.get(`/`, (req, res) => {
-    db.HighScore.findAll({
-      include: [db.User],
-      order: [[`score`, `DESC`]],
-      raw: true
-    }).then(dbScore => {
-      const highScoresObj = {
-        highScores: dbScore
-      };
-      res.render(`index`, highScoresObj);
-    });
-  });
+  // app.get(`/`, (req, res) => {
+  //   db.HighScore.findAll({
+  //     include: [db.User],
+  //     order: [[`score`, `DESC`]],
+  //     raw: true
+  //   }).then(dbScore => {
+  //     const highScoresObj = {
+  //       highScores: dbScore
+  //     };
+  //     res.render(`index`, highScoresObj);
+  //   });
+  // });
 
   app.delete(`/api/highscores/:id`, (req, res) => {
     db.HighScore.destroy({
