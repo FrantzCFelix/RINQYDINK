@@ -32,7 +32,7 @@ require('./routes/htmlRoutes')(app);
 */
 app.get(`/`, (req, res) => {
   
-res.sendFile(`${__dirname}/public/part3.html`);
+res.sendFile(`${__dirname}/public/part10.html`);
   
   // console.log(req.ip);
 });
