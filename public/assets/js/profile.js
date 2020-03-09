@@ -42,3 +42,12 @@ $(document).ready(() => {
 $(document).ready(() => {
   $(`.modal`).modal();
 });
+
+$(`.delete-score`).on(`click`, function() {
+  const id = $(this).data(`id`);
+  $.ajax(`/api/highscores/${id}`, {
+    type: `DELETE`
+  }).then(() => {
+    location.reload();
+  });
+});
