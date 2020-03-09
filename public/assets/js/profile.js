@@ -17,14 +17,14 @@ $(document).ready(() => {
     resetPwd(userData);
     newPassword.val(``);
   });
+
   function resetPwd(password) {
-    console.log(password);
     $.ajax({
       method: `PUT`,
       url: `/api/reset`,
       data: password
     }).then(() => {
-      window.location.href = `/login`;
+      window.location.replace(`/login`);
     });
   }
 });
