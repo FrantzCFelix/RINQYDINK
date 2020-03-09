@@ -15,6 +15,7 @@ $(document).ready(() => {
       return ;
     }
 
+    successReset();
     resetPwd(userData);
     newPassword.val(``);
   });
@@ -24,8 +25,6 @@ $(document).ready(() => {
       method: `PUT`,
       url: `/api/reset`,
       data: password
-    }).then(() => {
-      successReset();
     });
     window.location.replace(`/profile`);
   }
