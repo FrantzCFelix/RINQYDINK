@@ -156,10 +156,10 @@ module.exports = (app, sequelize) => {
     });
   });
 
-  app.post(`/api/highscores`, (req, res) => {
+  app.post(`/api/highscores`, isAuthenticated, (req, res) => {
     db.HighScore.create({
       score: req.body.score,
-      UserId: req.body.id
+      UserId: req.user.id
     }).then(dbScore => {
       res.json(dbScore);
     });
