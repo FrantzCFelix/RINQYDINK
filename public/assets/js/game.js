@@ -6,8 +6,13 @@ let currentHighScore;
 let highScorer;
 
 $.get(`/api/highscores/top`, data => {
-  currentHighScore = data.score;
-  highScorer = data.name.toUpperCase();
+  if (data.score !== undefined) {
+    currentHighScore = data.score;
+    highScorer = data.name.toUpperCase();
+  } else {
+    currentHighScore = 0;
+    highScorer = ``;
+  }
 });
 
 // an object that 'global' variables can be stored in. Not really global, just accessible anywhere
@@ -38,7 +43,6 @@ const config = {
 // creates a new instance of the Phaser.Game, feeding the config object
 // eslint-disable-next-line no-unused-vars
 let game;
-if(document.getElementById(`GameCanvas`))
-{
+if (document.getElementById(`GameCanvas`)) {
   game = new Phaser.Game(config);
 }
