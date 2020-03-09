@@ -10,6 +10,7 @@ $(document).ready(() => {
     const userData = {
       password: newPassword.val().trim()
     };
+
     if (!userData) {
       return ;
     }
@@ -24,8 +25,15 @@ $(document).ready(() => {
       url: `/api/reset`,
       data: password
     }).then(() => {
-      window.location.replace(`/login`);
+      successReset();
     });
+    window.location.replace(`/profile`);
+  }
+
+  function successReset() {
+    const numFadeMs = 500;
+    $(`#alert .msg`).text(`Your password has been updated!`);
+    $(`#alert`).fadeIn(numFadeMs);
   }
 });
 
