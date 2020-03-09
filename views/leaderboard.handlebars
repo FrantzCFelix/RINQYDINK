@@ -4,8 +4,8 @@
             <a href="#" class="brand-logo"><span class="member-name"></span></a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
-            <li><a href="/members">Menu</a></li>
-            <li><a href="/profile">Profile</a></li>
+                <li><a href="/members">Menu</a></li>
+                <li><a href="/profile">Profile</a></li>
             </ul>
         </div>
     </nav>
@@ -17,3 +17,16 @@
 </ul>
 
 <h1>Leaderboard</h1>
+
+
+<div id="high-scores-list">
+    <h3>High Scores:</h3>
+    <ol>
+        {{#each highScores}}
+
+        <li data-id="{{id}}">
+            {{'User.username'}} scored {{score}}
+        </li>
+        {{/each}}
+    </ol>
+</div>

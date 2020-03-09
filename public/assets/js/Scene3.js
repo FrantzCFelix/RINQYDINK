@@ -22,14 +22,15 @@ class Scene3 extends Phaser.Scene {
 }
 
 function processScore() {
-  const id = prompt(`What is your id?`);
-  insertHighScore(id, finalScore);
+  // const id = prompt(`What is your id?`);
+  insertHighScore(finalScore);
 }
 
-function insertHighScore(id, score) {
+function insertHighScore(score) {
   const highScore = {
-    id,
     score
   };
-  $.post(`/api/highscores`, highScore);
+  $.post(`/api/highscores`, highScore).then(() => {
+    location.replace(`/leaderboard`);
+  });
 }

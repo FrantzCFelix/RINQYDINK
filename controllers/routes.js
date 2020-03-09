@@ -6,21 +6,6 @@ const db = require(`../models`);
 
 // eslint-disable-next-line no-unused-vars
 module.exports = (app, sequelize) => {
-  // by max method
-  //   app.get('/api/highscores/top', (req, res) => {
-  //     db.HighScore
-  //       .findAll({
-  //         attributes: [
-  //           [sequelize.fn('max', sequelize.col('score')), 'high_score']
-  //         ],
-  //         raw: true
-  //       })
-  //       .then(dbScore => {
-  //         console.log(dbScore);
-  //         res.json(dbScore);
-  //       });
-  //   });
-
   app.get(`/`, (req, res) => {
     if (req.user) {
       res.redirect(`/members`);
@@ -54,7 +39,6 @@ module.exports = (app, sequelize) => {
       const userInfo = {
         highScores: userScores
       };
-      console.log(userInfo);
       res.render(`profile`, userInfo);
     });
   });
@@ -64,7 +48,16 @@ module.exports = (app, sequelize) => {
   });
 
   app.get(`/leaderboard`, isAuthenticated, (req, res) => {
-    res.render(`leaderboard`);
+    db.HighScore.findAll({
+      include: [db.User],
+      order: [[`score`, `DESC`]],
+      raw: true
+    }).then(dbScore => {
+      const highScoresObj = {
+        highScores: dbScore
+      };
+      res.render(`leaderboard`, highScoresObj);
+    });
   });
 
   app.post(`/api/login`, passport.authenticate(`local`), (req, res) => {
@@ -101,11 +94,10 @@ module.exports = (app, sequelize) => {
       where: {
         id: req.user.id
       }
-    })
-      .catch(err => {
-        const unauthenticatedStatusCode = 401;
-        res.status(unauthenticatedStatusCode).json(err);
-      });
+    }).catch(err => {
+      const unauthenticatedStatusCode = 401;
+      res.status(unauthenticatedStatusCode).json(err);
+    });
   });
 
   app.get(`/logout`, (req, res) => {
@@ -164,12 +156,12 @@ module.exports = (app, sequelize) => {
     });
   });
 
-  app.post(`/api/highscores`, (req, res) => {
+  app.post(`/api/highscores`, isAuthenticated, (req, res) => {
     db.HighScore.create({
       score: req.body.score,
-      UserId: req.body.id
-    }).then(dbScore => {
-      res.json(dbScore);
+      UserId: req.user.id
+    }).then(() => {
+      res.redirect(`/leaderboard`);
     });
   });
 };

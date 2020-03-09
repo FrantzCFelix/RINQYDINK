@@ -48,13 +48,13 @@ class Scene2 extends Phaser.Scene {
     // placing sprites
     this.ship1 = this.add.sprite(
       config.width / 2 - 50,
-      config.height / 2,
+      config.height * 2,
       `ship`
     );
-    this.ship2 = this.add.sprite(config.width / 2, config.height / 2, `ship2`);
+    this.ship2 = this.add.sprite(config.width / 2, config.height * 2, `ship2`);
     this.ship3 = this.add.sprite(
       config.width / 2 + 50,
-      config.height / 2,
+      config.height * 2,
       `ship3`
     );
     // this.robot = this.add.sprite(100, 100, 'robot-run');
@@ -69,29 +69,26 @@ class Scene2 extends Phaser.Scene {
     // another group
     this.powerUps = this.physics.add.group();
 
-    // creating objects to add to the second group
-    // 0 - 4 means 5 objects
-    // const maxObjects = 4;
-    // for (let i = 0; i <= maxObjects; ++i) {
-    //   //places the sprite
-    //   const powerUp = this.physics.add.sprite(16, 16, 'power-up');
-    //   //adds it to the group
-    //   this.powerUps.add(powerUp);
-    //   //re-establishes a random position
-    //   powerUp.setRandomPosition(0, 0, game.config.width, game.config.height);
-    //   //decides which animation from the same sprite will play
-    //   if (Math.random() > 0.5) {
-    //     powerUp.play('red');
-    //   } else {
-    //     powerUp.play('gray');
-    //   }
-    //   //sets the speed of the sprite, x, y
-    //   powerUp.setVelocity(Math.random() * 100, Math.random() * 100);
-    //   //stops the object from going over the edges of the game
-    //   powerUp.setCollideWorldBounds(true);
-    //   //controls the bounciness
-    //   powerUp.setBounce(1);
-    // }
+    setInterval(() => {
+      // places the sprite
+      const powerUp = this.physics.add.sprite(16, 16, `power-up`);
+      // adds it to the group
+      this.powerUps.add(powerUp);
+      // re-establishes a random position
+      powerUp.setRandomPosition(0, 0, game.config.width, game.config.height);
+      // decides which animation from the same sprite will play
+      if (Math.random() > 0.5) {
+        powerUp.play(`red`);
+      } else {
+        powerUp.play(`gray`);
+      }
+      // sets the speed of the sprite, x, y
+      powerUp.setVelocity(Math.random() * 100, Math.random() * 100);
+      // stops the object from going over the edges of the game
+      powerUp.setCollideWorldBounds(true);
+      // controls the bounciness
+      powerUp.setBounce(1);
+    }, 30000);
 
     // triggers the animation
     this.ship1.play(`ship1_anim`);
