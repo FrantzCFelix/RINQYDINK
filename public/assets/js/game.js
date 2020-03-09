@@ -37,4 +37,8 @@ const config = {
 
 // creates a new instance of the Phaser.Game, feeding the config object
 // eslint-disable-next-line no-unused-vars
-const game = new Phaser.Game(config);
+let game;
+if(document.getElementById(`GameCanvas`))
+{
+  game = new Phaser.Game(config);
+}
