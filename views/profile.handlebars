@@ -45,15 +45,20 @@
     </div>
 </div>
 
-<div id="passwordModal" class="modal">
-    <div class="modal-content">
-        <h5>Change your password</h5>
-        <form class="col s12">
-            <div class="row">
-                <div class="input-field col s12">
-                    <input id="newPassword" type="password" class="validate">
-                    <label class="active" for="password">New Password</label>
-                </div>
+
+        <div id="passwordModal" class="modal">
+            <div class="modal-content">
+                <h5>Change your password</h5>
+                <form class="col s12" id="passwordForm">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="newPassword" type="password" class="validate">
+                            <label class="active" for="password">New Password</label>
+                        </div>
+                    </div>
+                    <button class="btn waves-effect waves-light btn-small indigo darken-4" type="submit" name="action">Submit</button>
+                </form>
+
             </div>
             <button class="btn waves-effect waves-light btn-small indigo darken-4" type="submit"
                 name="action">Submit</button>
