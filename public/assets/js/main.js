@@ -15,6 +15,6 @@ $(document).ready(() => {
   function autoplay() {
     $(`.carousel`).carousel(`next`);
     // eslint-disable-next-line no-magic-numbers
-    setTimeout(autoplay, 4500);
+    setTimeout(autoplay, 5000);
   }
 });
