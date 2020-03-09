@@ -160,8 +160,8 @@ module.exports = (app, sequelize) => {
     db.HighScore.create({
       score: req.body.score,
       UserId: req.user.id
-    }).then(dbScore => {
-      res.json(dbScore);
+    }).then(() => {
+      res.redirect(`/leaderboard`);
     });
   });
 };

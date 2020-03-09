@@ -88,7 +88,7 @@ class Scene2 extends Phaser.Scene {
       powerUp.setCollideWorldBounds(true);
       // controls the bounciness
       powerUp.setBounce(1);
-    }, Math.random() * 30000);
+    }, 30000);
 
     // triggers the animation
     this.ship1.play(`ship1_anim`);

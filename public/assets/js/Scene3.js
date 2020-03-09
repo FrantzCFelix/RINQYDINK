@@ -30,5 +30,7 @@ function insertHighScore(score) {
   const highScore = {
     score
   };
-  $.post(`/api/highscores`, highScore);
+  $.post(`/api/highscores`, highScore).then(() => {
+    location.replace(`/leaderboard`);
+  });
 }
