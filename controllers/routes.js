@@ -44,7 +44,19 @@ module.exports = (app, sequelize) => {
   });
 
   app.get(`/profile`, isAuthenticated, (req, res) => {
-    res.render(`profile`);
+    db.HighScore.findAll({
+      where: {
+        UserId: req.user.id
+      },
+      order: [[`score`, `DESC`]],
+      raw: true
+    }).then(userScores => {
+      const userInfo = {
+        highScores: userScores
+      };
+      console.log(userInfo);
+      res.render(`profile`, userInfo);
+    });
   });
 
   app.get(`/solo`, isAuthenticated, (req, res) => {
@@ -56,7 +68,7 @@ module.exports = (app, sequelize) => {
   });
 
   app.post(`/api/login`, passport.authenticate(`local`), (req, res) => {
-    const user = {user: req.user};
+    const user = { user: req.user };
     res.render(`login`, user);
   });
 
