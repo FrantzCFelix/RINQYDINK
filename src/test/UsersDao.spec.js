@@ -1,4 +1,4 @@
-let UserDAO = require('../main/daos/UsersDao');
+let UserDAO = require('../main/daos/UsersDAO');
 
 jest.mock('../main/models/users', () => () => {
   const SequelizeMock = require('sequelize-mock');
