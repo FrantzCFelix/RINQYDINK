@@ -31,3 +31,10 @@ db.sequelize.sync().then(() => {
     console.log(`Server running at: http://localhost:${PORT}`);
   });
 });
+
+const UserDAO = require('./src/main/daos/UsersDao');
+app.get('/test', async (req, res) => {
+  //note async here
+  let user = await UserDAO.getOneUser();
+  res.json(user);
+});

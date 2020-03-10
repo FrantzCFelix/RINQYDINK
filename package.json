@@ -15,10 +15,11 @@
   },
   "devDependencies": {
     "eslint": "^6.8.0",
-    "jest": "^25.1.0"
+    "jest": "^25.1.0",
+    "sequelize-mock": "^0.10.2"
   },
   "scripts": {
-    "test": "jest",
+    "test": "jest --config ./jest.config.js --forceExit --coverage",
     "lint": "eslint . \"**/*.js\"",
     "watch": "nodemon server.js",
     "start": "node server.js"
