@@ -1,3 +1,6 @@
 node_modules/
 public/assets/js/external/
 foo.test.js
+jest.config.js
+src/
+server.js
