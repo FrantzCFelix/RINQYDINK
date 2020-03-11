@@ -62,7 +62,7 @@ module.exports = (app, sequelize) => {
     }).then(dbScore => {
       for (const score of dbScore) {
         score.signedIn = req.user.id;
-        if (score.signedIn === score['User.id']) {
+        if (score.signedIn === score[`User.id`]) {
           score.status = true;
         } else {
           score.status = false;
