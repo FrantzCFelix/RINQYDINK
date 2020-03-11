@@ -60,9 +60,18 @@ module.exports = (app, sequelize) => {
       limit: 20,
       raw: true
     }).then(dbScore => {
+      for (const score of dbScore) {
+        score.signedIn = req.user.id;
+        if (score.signedIn === score['User.id']) {
+          score.status = true;
+        } else {
+          score.status = false;
+        }
+      }
       const highScoresObj = {
         highScores: dbScore
       };
+      console.log(highScoresObj);
       res.render(`leaderboard`, highScoresObj);
     });
   });
