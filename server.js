@@ -81,7 +81,7 @@ require(`./controllers/routes.js`)(app, db.sequelize);
 
 
 
-const UserDAO = require('./src/main/daos/UsersDao');
+const UserDAO = require('./src/main/daos/UsersDAO');
 app.get('/test', async (req, res) => {
   //note async here
   let user = await UserDAO.getOneUser();
