@@ -10,11 +10,9 @@ module.exports = (app, sequelize) => {
     if (req.user) {
       res.redirect(`/members`);
     }
-    res.render(`index`);
-  });
-
-  app.get(`/index`, (req, res) => {
-    res.render(`index`);
+    else{
+      res.render(`index`);
+    }
   });
 
   app.get(`/signup`, (req, res) => {
@@ -25,7 +23,9 @@ module.exports = (app, sequelize) => {
     if (req.user) {
       res.redirect(`/members`);
     }
-    res.render(`login`);
+    else{
+      res.render(`login`);
+    }
   });
 
   app.get(`/members`, isAuthenticated, (req, res) => {
