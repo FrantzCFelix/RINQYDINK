@@ -57,6 +57,16 @@ class Scene1 extends Phaser.Scene {
       `assets/font/font.png`,
       `assets/font/font.xml`
     );
+
+    this.load.audio(`enemy_explode`, `assets/sounds/enemy_explode.mp3`);
+    this.load.audio(`player_explode`, `assets/sounds/player_explode.mp3`);
+    this.load.audio(`power-up`, `assets/sounds/power-up.mp3`);
+    this.load.audio(`shoot`, `assets/sounds/shoot.mp3`);
+    this.load.audio(`enemy_score`, `assets/sounds/enemy_score.mp3`);
+    this.load.audio(`game_over`, `assets/sounds/game_over.mp3`);
+    this.load.audio(`powerup_appear`, `assets/sounds/powerup_appear.mp3`);
+    this.load.audio(`powerup_explode`, `assets/sounds/powerup_explode.mp3`);
+    this.load.audio(`music`, `assets/sounds/Funky_Chill_loop.mp3`);
   }
 
   create() {
