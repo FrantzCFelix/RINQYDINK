@@ -5,8 +5,8 @@ jest.mock('../main/models/users', () => () => {
   const dbMock = new SequelizeMock();
   return dbMock.define('user', {
     id: 2,
-    username: 'agtravis',
-    password: '1234',
+    username: null,
+    password: null,
     creTs: '2019-01-01 13:30:31',
     updTs: '2019-01-01 13:30:31'
   });
@@ -15,16 +15,6 @@ jest.mock('../main/models/users', () => () => {
 describe('Test Sequelize Mocking', () => {
   it('Should get value from mock', async () => {
     const user = await UserDAO.getOneUser();
-    expect(user.id).toEqual(2);
-  });
-
-  it('Should get value from mock', async () => {
-    const user = await UserDAO.getOneUser();
-    expect(user.username).toEqual('agtravis');
-  });
-
-  it('Should get value from mock', async () => {
-    const user = await UserDAO.getOneUser();
-    expect(user.password).toEqual('1234');
+    expect(user.username).toBeNull();
   });
 });
