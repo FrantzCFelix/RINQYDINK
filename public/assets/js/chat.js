@@ -20,7 +20,15 @@ $(function() {
       chatName = socket.id;
     }
 
+    $(`#m`).on('keydown',(e)=>{
+        console.log(e);
+        if(e.key === ` `)
+        {
+        $(`#m`).val($(`#m`).val()+ e.key);
+        }
+    } );
     $(`#chat-window`).submit(function(e) {
+    
       e.preventDefault(); // prevents page reloading
       e.stopPropagation();
       socket.emit(`chat message`, $(`#m`).val());
