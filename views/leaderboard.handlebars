@@ -27,6 +27,12 @@
 
                     <li data-id="{{id}}">
                         {{'User.username'}} scored {{score}}
+                        {{#if status}}
+                        <br>
+                        <button class="delete-score waves-effect btn-flat" data-id="{{id}}">
+                            <i class="material-icons">close</i>
+                        </button><br>
+                        {{/if}}
                     </li>
                     {{/each}}
                 </ol><br>
