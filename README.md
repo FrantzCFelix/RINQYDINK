@@ -1,8 +1,12 @@
 # RINQYDINK
 
+### UML
+
+![Homepage](./public/assets/images/screenshots/UML.png)
+
 This is an app based on classic video game arcades from the 80s & early 90s. Kids used to come to play games, yes, but also to socialize and get human interaction. In the days of headsets, high-tech games, and high-speed internet connections, this app hopes to encapsulate the magic of an era lost to history along and combine it with the connectivty of today. Users are able to create their accounts and therefore compare high scores, and interact with eachother in real time either by playing multiplayer or simply using the chat feature.
 
-Check out the repo [here](https://github.com/FrantzCFelix/RINQYDINK), and see the app in operation [here](**************).
+Check out the repo [here](https://github.com/FrantzCFelix/RINQYDINK), and see the app in operation [here](https://rinqydinky.herokuapp.com/).
 
 This app runs in the browser - see [Setup](#setup) below for instructions on how to use.
 
@@ -173,9 +177,23 @@ Finally let's look at a delete. If the user clicks on a delete button for a high
 
 ## Setup
 
+To set up this app as a user, you simply go to the website [here](https://rinqydinky.herokuapp.com/) and sign up for an account. All it requires is a username and password. From that point you are automatically logged in and ready to go, or on following visits you would login with those credentials. All your scores are stored in your own personal history, and users can delete any scores of their own with which they are unhappy. Users can also change their password from inside their profile.
+
+### Gameplay
+
+The rules of the space shooter game itself are very simple. You start with 3 lives, and if an enemy ship touches you, you lose a life. If you destroy an enemy, you score points, but if an enemy makes it to the bottom of the screen, you lose points (negative scores are totally possible). Different ships have different speeds, and will take varying amounts of points off your score. You will not be able to get every ship, so this game is about making decisions on the fly about which objectives are more important. Randomly, power-ups will appear containing extra lives, but don't shoot them!
+
+Use the cursor keys to move around, and spacebar to shoot.
+
 ## Features
 
+This app has a cool chat feature that enables users to talk to eachother while playing. The fact that you have to sign up for an account makes it more competitive and helps identify individuals in the chat.
+
 ## Status & Future Developement
+
+This app already achieves more than we set out to achieve. Our MVP was simply to provide a fun, basic game platform, using JavaScript, and running it in the browser. Adding the sign in and chat features brings us to MVP+. To take it to MVP++, we would like to have multiple games, all with their own accompanying high scores. The logical next step for MVP+++ would be to enable users to submit their own games to add to the arcade, and ultimately we could provide tools (spritesheets, tilemaps, code examples & tutorials) for users to do this.
+
+Multiplayer.....................................
 
 ## Contact
 
