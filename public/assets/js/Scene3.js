@@ -7,13 +7,15 @@ class Scene3 extends Phaser.Scene {
   }
 
   create() {
-    const gameOverText = `GAME OVER!!!\n\nYou Scored ${finalScore}.`;
+    const gameOverText = `GAME OVER!!!\n\nYou Scored ${Math.floor(
+      finalScore
+    )}.`;
 
     // eslint-disable-next-line no-magic-numbers
     this.add.text(100, 100, gameOverText);
 
     this.time.addEvent({
-      delay: 2000,
+      delay: 3000,
       callback: processScore,
       callbackScope: this,
       loop: false
