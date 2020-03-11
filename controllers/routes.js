@@ -13,10 +13,6 @@ module.exports = (app, sequelize) => {
     res.render(`index`);
   });
 
-  app.get(`/index`, (req, res) => {
-    res.render(`index`);
-  });
-
   app.get(`/signup`, (req, res) => {
     res.render(`signup`);
   });
@@ -49,10 +45,6 @@ module.exports = (app, sequelize) => {
 
   app.get(`/solo`, isAuthenticated, (req, res) => {
     res.render(`solo`);
-  });
-
-  app.get(`/coop`, isAuthenticated, (req, res) => {
-    res.render(`coop`);
   });
 
   app.get(`/leaderboard`, isAuthenticated, (req, res) => {
