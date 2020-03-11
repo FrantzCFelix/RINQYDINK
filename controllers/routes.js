@@ -9,8 +9,7 @@ module.exports = (app, sequelize) => {
   app.get(`/`, (req, res) => {
     if (req.user) {
       res.redirect(`/members`);
-    }
-    else{
+    } else {
       res.render(`index`);
     }
   });
@@ -22,8 +21,7 @@ module.exports = (app, sequelize) => {
   app.get(`/login`, (req, res) => {
     if (req.user) {
       res.redirect(`/members`);
-    }
-    else{
+    } else {
       res.render(`login`);
     }
   });
@@ -59,6 +57,7 @@ module.exports = (app, sequelize) => {
     db.HighScore.findAll({
       include: [db.User],
       order: [[`score`, `DESC`]],
+      limit: 20,
       raw: true
     }).then(dbScore => {
       const highScoresObj = {
