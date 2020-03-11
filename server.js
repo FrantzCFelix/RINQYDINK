@@ -72,6 +72,7 @@ require(`./controllers/routes.js`)(app, db.sequelize);
   Paste localStorage.debug = '*'; into broswer console
   ***************************/
 
+
 const UserDAO = require('./src/main/daos/UsersDAO');
 app.get('/test', async (req, res) => {
   //note async here
