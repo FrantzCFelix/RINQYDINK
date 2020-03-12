@@ -7,18 +7,26 @@ $(function() {
   $.get(`/api/user_data`).then(data => {
     //console.log(data);
     // 'http://localhost:5000/solo'
+        //adds username and id to TCP handshake header
     let socket = io({
       query: {
         username: data.username,
         id: data.id
       }
     });
-
-    if (data.username) {
-      chatName = data.username;
+    //console.log(socket);
+    if (socket.query.username) {
+      chatName = socket.query.username;
     } else {
-      chatName = socket.id;
+      chatName = "Guest User:";
     }
+
+//     var objDiv = document.getElementsByClassName("chatArea");
+// objDiv.scrollTop = objDiv.scrollHeight;
+
+$('.chatArea').stop ().animate ({
+  scrollTop: $('.chatArea')[0].scrollHeight
+});
 
     $(`#m`).on('keydown',(e)=>{
         console.log(e);
@@ -28,6 +36,7 @@ $(function() {
         }
     } );
     $(`#chat-window`).submit(function(e) {
+      
     
       e.preventDefault(); // prevents page reloading
       e.stopPropagation();
