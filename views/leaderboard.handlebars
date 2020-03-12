@@ -19,16 +19,14 @@
 <div class="section white">
     <div class="row container">
         <div class="row">
-            <div class="col s5"></div>
-            <div class="col s5" id="high-scores-list">
-                <h4>High Scores</h4>
+            <div class="col s12" id="high-scores-list">
+                <h4 class="center">High Scores</h4>
                 <ol>
                     {{#each highScores}}
 
                     <li data-id="{{id}}">
                         {{'User.username'}} scored {{score}}
                         {{#if status}}
-                        <br>
                         <button class="delete-score waves-effect btn-flat" data-id="{{id}}">
                             <i class="material-icons">close</i>
                         </button><br>
@@ -37,7 +35,6 @@
                     {{/each}}
                 </ol><br>
             </div>
-            <div class="col s2"></div>
         </div>
     </div>
 </div>

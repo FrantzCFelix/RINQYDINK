@@ -1,13 +1,16 @@
-const Sequelize = require('sequelize');
-const sequelize = new Sequelize('phaser_db', 'root', 'George1!', {
-  host: '127.0.0.1',
-  dialect: 'mysql',
+'use strict';
+
+const Sequelize = require(`sequelize`);
+const sequelize = new Sequelize(`phaser_db`, `root`, `MyPassword`, {
+  host: `127.0.0.1`,
+  dialect: `mysql`,
   operatorsAliases: false,
   dialectOptions: {
     dateStrings: true,
+    // eslint-disable-next-line object-shorthand
     typeCast: function(field, next) {
       // for reading from database
-      if (field.type === 'DATETIME') {
+      if (field.type === `DATETIME`) {
         return field.string();
       }
       return next();
@@ -15,18 +18,19 @@ const sequelize = new Sequelize('phaser_db', 'root', 'George1!', {
   }
 });
 
-const Highscore = require('../models/highscores')(sequelize, Sequelize); //you can do this in many ways
+const Highscore = require(`../models/highscores`)(sequelize, Sequelize); // you can do this in many ways
 
 module.exports = {
-  getOneHighscore: function() {
+  getOneHighscore() {
     return new Promise((resolve, reject) => {
       Highscore.findOne()
         .then(highscore => {
-          console.log('highscore value is ' + JSON.stringify(highscore));
+          // eslint-disable-next-line prefer-template
+          console.log(`highscore value is ` + JSON.stringify(highscore));
           resolve(highscore);
         })
         .catch(err => {
-          console.log('error occurred', err);
+          console.log(`error occurred`, err);
           reject(err);
         });
     });
