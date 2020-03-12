@@ -1,31 +1,33 @@
 /* jshint indent: 2 */
 
+'use strict';
+
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('highscores', {
+  return sequelize.define(`highscores`, {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
-      field: 'id'
+      field: `id`
     },
     score: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      field: 'score'
+      field: `score`
     },
     userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'users',
-        key: 'id'
+        model: `users`,
+        key: `id`
       },
-      field: 'UserId'
+      field: `UserId`
     }
   }, {
-    tableName: 'highscores',
+    tableName: `highscores`,
     timestamps: true,
-    createdAt: 'creTs',
-    updatedAt: 'updTs'
+    createdAt: `creTs`,
+    updatedAt: `updTs`
   });
 };
