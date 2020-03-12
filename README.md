@@ -187,7 +187,7 @@ Use the cursor keys to move around, and spacebar to shoot.
 
 ## Features
 
-This app has a cool chat feature that enables users to talk to eachother while playing. The fact that you have to sign up for an account makes it more competitive and helps identify individuals in the chat.
+This app has a cool chat feature that enables users to talk to each other while playing. The fact that you have to sign up for an account makes it more competitive and helps identify individuals in the chat.
 
 ## Status & Future Developement
 

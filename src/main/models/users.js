@@ -1,28 +1,32 @@
 /* jshint indent: 2 */
+/* eslint-disable no-magic-numbers */
+
+'use strict';
+
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('users', {
+  return sequelize.define(`users`, {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
-      field: 'id'
+      field: `id`
     },
     username: {
       type: DataTypes.STRING(255),
       allowNull: false,
       unique: true,
-      field: 'username'
+      field: `username`
     },
     password: {
       type: DataTypes.STRING(255),
       allowNull: true,
-      field: 'password'
-    },
+      field: `password`
+    }
   }, {
-    tableName: 'users',
+    tableName: `users`,
     timestamps: true,
-    createdAt: 'creTs',
-    updatedAt: 'updTs'
+    createdAt: `creTs`,
+    updatedAt: `updTs`
   });
 };
