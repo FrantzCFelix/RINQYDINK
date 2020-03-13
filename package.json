@@ -9,6 +9,7 @@
     "express-handlebars": "^3.1.0",
     "express-session": "^1.17.0",
     "mysql2": "^2.1.0",
+    "nodemailer": "^6.4.5",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "sequelize": "^5.21.5",
