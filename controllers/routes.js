@@ -9,10 +9,13 @@ module.exports = (app, sequelize) => {
   app.get(`/`, (req, res) => {
     if (req.user) {
       res.redirect(`/members`);
-    }
-    else{
+    } else {
       res.render(`index`);
     }
+  });
+
+  app.get(`/contact`, (req, res) => {
+    res.render(`contact`);
   });
 
   app.get(`/signup`, (req, res) => {
@@ -22,8 +25,7 @@ module.exports = (app, sequelize) => {
   app.get(`/login`, (req, res) => {
     if (req.user) {
       res.redirect(`/members`);
-    }
-    else{
+    } else {
       res.render(`login`);
     }
   });
@@ -59,11 +61,21 @@ module.exports = (app, sequelize) => {
     db.HighScore.findAll({
       include: [db.User],
       order: [[`score`, `DESC`]],
+      limit: 20,
       raw: true
     }).then(dbScore => {
+      for (const score of dbScore) {
+        score.signedIn = req.user.id;
+        if (score.signedIn === score[`User.id`]) {
+          score.status = true;
+        } else {
+          score.status = false;
+        }
+      }
       const highScoresObj = {
         highScores: dbScore
       };
+      console.log(highScoresObj);
       res.render(`leaderboard`, highScoresObj);
     });
   });

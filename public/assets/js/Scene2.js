@@ -3,6 +3,9 @@
 
 // eslint-disable-next-line no-unused-vars
 let finalScore;
+let multiplier = 1;
+let level = 1;
+
 // eslint-disable-next-line no-unused-vars
 class Scene2 extends Phaser.Scene {
   constructor() {
@@ -83,11 +86,18 @@ class Scene2 extends Phaser.Scene {
         powerUp.play(`gray`);
       }
       // sets the speed of the sprite, x, y
-      powerUp.setVelocity(Math.random() * 100, Math.random() * 100);
+      powerUp.setVelocity(
+        Math.random() * 100 * multiplier,
+        Math.random() * 100 * multiplier
+      );
       // stops the object from going over the edges of the game
       powerUp.setCollideWorldBounds(true);
       // controls the bounciness
       powerUp.setBounce(1);
+      this.powerupAppear.play();
+      multiplier += 0.3;
+      level += 1;
+      this.playerLevel.text = `LEVEL ${level}`;
     }, 30000);
 
     // triggers the animation
@@ -141,6 +151,8 @@ class Scene2 extends Phaser.Scene {
       ) => {
         // calls destroy method on projectile
         projectile.destroy();
+        powerUp.destroy();
+        this.powerupExplode.play();
       }
     );
 
@@ -200,6 +212,33 @@ class Scene2 extends Phaser.Scene {
       `pixelFont`,
       `HIGH SCORE ${this.zeroPad(currentHighScore)} - ${highScorer}`
     );
+    this.playerLevel = this.add.bitmapText(
+      125,
+      5,
+      `pixelFont`,
+      `LEVEL ${level}`
+    );
+
+    this.beamSound = this.sound.add(`shoot`);
+    this.explosionSoundEnemy = this.sound.add(`enemy_explode`);
+    this.explosionSoundPlayer = this.sound.add(`player_explode`);
+    this.pickupSound = this.sound.add(`power-up`);
+    this.enemyScore = this.sound.add(`enemy_score`);
+    this.gameOver = this.sound.add(`game_over`);
+    this.powerupAppear = this.sound.add(`powerup_appear`);
+    this.powerupExplode = this.sound.add(`powerup_explode`);
+
+    this.music = this.sound.add(`music`);
+    const musicConfig = {
+      mute: false,
+      volume: 1,
+      rate: 1,
+      detune: 0,
+      seek: 0,
+      loop: true,
+      delay: 0
+    };
+    this.music.play(musicConfig);
   }
 
   // when the player hits a powerup, the powerup is invisible and inactive
@@ -207,6 +246,7 @@ class Scene2 extends Phaser.Scene {
     powerUp.disableBody(true, true);
     this.lives += 1;
     this.livesLeft.text = `LIVES ${this.lives}`;
+    this.pickupSound.play();
   }
 
   // if the enemy hits the player
@@ -223,6 +263,7 @@ class Scene2 extends Phaser.Scene {
     const explosion = new Explosion(this, player.x, player.y);
     // make player invisible and inactive
     player.disableBody(true, true);
+    this.explosionSoundPlayer.play();
     // wait 1 second, then callback function
     this.time.addEvent({
       delay: 1000,
@@ -251,6 +292,7 @@ class Scene2 extends Phaser.Scene {
     } else {
       // trigger scene 3 (not yet coded)
       finalScore = this.score;
+      this.gameOver.play();
       this.scene.start(`endGame`);
     }
   }
@@ -292,19 +334,21 @@ class Scene2 extends Phaser.Scene {
     const explosion = new Explosion(this, enemy.x, enemy.y);
     projectile.destroy();
     this.resetShipPos(enemy);
-    this.score += 15;
+    this.score += Math.floor(15 * multiplier);
     // helper function to create extra zeros
     const scoreFormatted = this.zeroPad(this.score, 6);
-    this.scoreLabel.text = `SCORE ${scoreFormatted}`;
+    this.scoreLabel.text = `SCORE ${Math.floor(scoreFormatted)}`;
+    this.explosionSoundEnemy.play();
   }
 
   // a function that moves the enemies on auto
   moveShip(ship, speed, pointsDeduction) {
     ship.y += speed;
     if (ship.y > config.height) {
-      this.score -= pointsDeduction;
+      this.score -= pointsDeduction * multiplier;
+      this.enemyScore.play();
       const scoreFormatted = this.zeroPad(this.score, 6);
-      this.scoreLabel.text = `SCORE ${scoreFormatted}`;
+      this.scoreLabel.text = `SCORE ${Math.floor(scoreFormatted)}`;
       this.resetShipPos(ship);
     }
   }
@@ -325,9 +369,9 @@ class Scene2 extends Phaser.Scene {
   // This function is called over and over
   update() {
     // controls enemy movement
-    this.moveShip(this.ship1, 1, 15);
-    this.moveShip(this.ship2, 2, 10);
-    this.moveShip(this.ship3, 3, 5);
+    this.moveShip(this.ship1, 1 * multiplier, 15);
+    this.moveShip(this.ship2, 2 * multiplier, 10);
+    this.moveShip(this.ship3, 3 * multiplier, 5);
 
     // moves background image
     this.background.tilePositionY -= 0.5;
@@ -349,20 +393,21 @@ class Scene2 extends Phaser.Scene {
   shootBeam() {
     // eslint-disable-next-line no-unused-vars
     const beam = new Beam(this);
+    this.beamSound.play();
   }
 
   movePlayerManager() {
     if (this.cursorKeys.left.isDown) {
-      this.player.setVelocityX(-gameSettings.playerSpeed);
+      this.player.setVelocityX(-gameSettings.playerSpeed * multiplier);
     } else if (this.cursorKeys.right.isDown) {
-      this.player.setVelocityX(gameSettings.playerSpeed);
+      this.player.setVelocityX(gameSettings.playerSpeed * multiplier);
     } else {
       this.player.setVelocityX(0);
     }
     if (this.cursorKeys.up.isDown) {
-      this.player.setVelocityY(-gameSettings.playerSpeed);
+      this.player.setVelocityY(-gameSettings.playerSpeed * multiplier);
     } else if (this.cursorKeys.down.isDown) {
-      this.player.setVelocityY(gameSettings.playerSpeed);
+      this.player.setVelocityY(gameSettings.playerSpeed * multiplier);
     } else {
       this.player.setVelocityY(0);
     }

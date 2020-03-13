@@ -2,6 +2,8 @@
 
 $(document).ready(() => {
 
+  $(`.parallax`).parallax();
+
   const signUpForm = $(`form#signUp`);
   const usernameSignUp = $(`input#usernameSignUp`);
   const passwordSignUp = $(`input#passwordSignUp`);
@@ -39,6 +41,3 @@ $(document).ready(() => {
   }
 });
 
-$(document).ready(() => {
-  $(`.parallax`).parallax();
-});

@@ -1,10 +1,8 @@
 'use strict';
 
 $(document).ready(() => {
-  $(`.sidenav`).sidenav();
-});
 
-$(document).ready(() => {
+  $(`.sidenav`).sidenav();
 
   $(`.carousel`).carousel({
     padding: 200,

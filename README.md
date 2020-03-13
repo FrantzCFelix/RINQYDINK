@@ -1,8 +1,12 @@
 # RINQYDINK
 
-This is an app based on classic video game arcades from the 80s & early 90s. Kids used to come to play games, yes, but also to socialize and get human interaction. In the days of headsets, high-tech games, and high-speed internet connections, this app hopes to encapsulate the magic of an era lost to history along and combine it with the connectivty of today. Users are able to create their accounts and therefore compare high scores, and interact with eachother in real time either by playing multiplayer or simply using the chat feature.
+### UML
 
-Check out the repo [here](https://github.com/FrantzCFelix/RINQYDINK), and see the app in operation [here](**************).
+![Homepage](./public/assets/images/screenshots/UML.png)
+
+This is an app based on classic video game arcades from the 80s & early 90s. Kids used to come to play games, yes, but also to socialize and get human interaction. In the days of headsets, high-tech games, and high-speed internet connections, this app hopes to encapsulate the magic of an era lost to history along and combine it with the connectivity of today. Users are able to create their accounts and therefore compare high scores, and interact with each other in real time either by playing multiplayer or simply using the chat feature.
+
+Check out the repo [here](https://github.com/FrantzCFelix/RINQYDINK), and see the app in operation [here](https://rinqydinky.herokuapp.com/).
 
 This app runs in the browser - see [Setup](#setup) below for instructions on how to use.
 
@@ -18,7 +22,11 @@ This app runs in the browser - see [Setup](#setup) below for instructions on how
 
 ## Screenshots
 
+![Homepage](./public/assets/images/screenshots/log-in.PNG)
 ![Homepage](./public/assets/images/screenshots/homepage.PNG)
+![Homepage](./public/assets/images/screenshots/instructions.PNG)
+![Homepage](./public/assets/images/screenshots/game-chat.png)
+![Homepage](./public/assets/images/screenshots/leaderboard.PNG)
 
 ## Technologies
 
@@ -39,7 +47,7 @@ Here are the package.json dependencies:
 
 This package was written in JavaScript using Node.js, and uses `MySQL` (via `sequelize ORM`) to interact with the database. If the GitHub repo is forked, in order to edit the code the user can run `npm i` to install these dependency. `Express` is the module used to create a server, and `express-handlebars` is how the content is being dynamically displayed through a view engine. `materialize-css` works with the front end to style the web-page. `socket.io` and `socket.io-client` are to support the chat window.
 
-All other dependencies not mentioned are related to creating and saving user details either in the database permanently, or in the client for the length of the session, and utilise `bcryptjs` to protect passwords.
+All other dependencies not mentioned are related to creating and saving user details either in the database permanently, or in the client for the length of the session, and utilize `bcryptjs` to protect passwords.
 
 The app is hosted via `Heroku` in order to facilitate the necessity of running a live server.
 
@@ -173,10 +181,24 @@ Finally let's look at a delete. If the user clicks on a delete button for a high
 
 ## Setup
 
+To set up this app as a user, you simply go to the website [here](https://rinqydinky.herokuapp.com/) and sign up for an account. All it requires is a username and password. From that point you are automatically logged in and ready to go, or on following visits you would login with those credentials. All your scores are stored in your own personal history, and users can delete any scores of their own with which they are unhappy. Users can also change their password from inside their profile.
+
+### Gameplay
+
+The rules of the space shooter game itself are very simple. You start with 3 lives, and if an enemy ship touches you, you lose a life. If you destroy an enemy, you score points, but if an enemy makes it to the bottom of the screen, you lose points (negative scores are totally possible). Different ships have different speeds, and will take varying amounts of points off your score. You will not be able to get every ship, so this game is about making decisions on the fly about which objectives are more important. Every 30 seconds when the game levels up, power-ups will appear containing extra lives, but don't shoot them! As the levels go up, the speed intensifies and the scores and penalties increase!
+
+Use the cursor keys to move around, and spacebar to shoot.
+
 ## Features
+
+This app has a cool chat feature that enables users to talk to each other while playing. The fact that you have to sign up for an account makes it more competitive and helps identify individuals in the chat.
 
 ## Status & Future Developement
 
+This app already achieves more than we set out to achieve. Our MVP was simply to provide a fun, basic game platform, using JavaScript, and running it in the browser. Adding the sign in and chat features brings us to MVP+. To take it to MVP++, we would like to have multiple games, all with their own accompanying high scores. The logical next step for MVP+++ would be to enable users to submit their own games to add to the arcade, and ultimately we could provide tools (spritesheets, tilemaps, code examples & tutorials) for users to do this.
+
+Multiplayer.....................................
+
 ## Contact
 
-Created by [@agtravis](https://agtravis.github.io/) | [@agtravis](https://agtravis.github.io/) | [@agtravis](https://agtravis.github.io/)
+Created by [@agtravis](https://agtravis.github.io/) | [@agtravis](https://agtravis.github.io/) | [@ddhoang21](https://ddhoang21.github.io/My-Portfolio/)

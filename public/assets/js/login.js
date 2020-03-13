@@ -2,6 +2,8 @@
 
 $(document).ready(() => {
 
+  $(`.parallax`).parallax();
+
   const loginForm = $(`form#login`);
   const usernameLogin = $(`input#usernameLogin`);
   const passwordLogin = $(`input#passwordLogin`);
@@ -37,8 +39,5 @@ $(document).ready(() => {
     $(`#alert .msg`).text(`Wrong credentials!`);
     $(`#alert`).fadeIn(numFadeMs);
   }
-});
 
-$(document).ready(() => {
-  $(`.parallax`).parallax();
 });
