@@ -14,6 +14,10 @@ module.exports = (app, sequelize) => {
     }
   });
 
+  app.get(`/contact`, (req, res) => {
+    res.render(`contact`);
+  });
+
   app.get(`/signup`, (req, res) => {
     res.render(`signup`);
   });
