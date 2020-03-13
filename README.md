@@ -22,7 +22,11 @@ This app runs in the browser - see [Setup](#setup) below for instructions on how
 
 ## Screenshots
 
-![Homepage](./public/assets/images/screenshots/homepage.png)
+![Homepage](./public/assets/images/screenshots/log-in.PNG)
+![Homepage](./public/assets/images/screenshots/homepage.PNG)
+![Homepage](./public/assets/images/screenshots/instructions.PNG)
+![Homepage](./public/assets/images/screenshots/game-chat.png)
+![Homepage](./public/assets/images/screenshots/leaderboard.PNG)
 
 ## Technologies
 
