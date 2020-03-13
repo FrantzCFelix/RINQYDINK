@@ -4,6 +4,7 @@ $(document).ready(() => {
 
   $(`.sidenav`).sidenav();
   $(`.modal`).modal();
+  $(`.parallax`).parallax();
 
   const passwordForm = $(`form#passwordForm`);
   const newPassword = $(`input#newPassword`);

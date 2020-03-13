@@ -4,7 +4,7 @@
 
 ![Homepage](./public/assets/images/screenshots/UML.png)
 
-This is an app based on classic video game arcades from the 80s & early 90s. Kids used to come to play games, yes, but also to socialize and get human interaction. In the days of headsets, high-tech games, and high-speed internet connections, this app hopes to encapsulate the magic of an era lost to history along and combine it with the connectivty of today. Users are able to create their accounts and therefore compare high scores, and interact with eachother in real time either by playing multiplayer or simply using the chat feature.
+This is an app based on classic video game arcades from the 80s & early 90s. Kids used to come to play games, yes, but also to socialize and get human interaction. In the days of headsets, high-tech games, and high-speed internet connections, this app hopes to encapsulate the magic of an era lost to history along and combine it with the connectivity of today. Users are able to create their accounts and therefore compare high scores, and interact with each other in real time either by playing multiplayer or simply using the chat feature.
 
 Check out the repo [here](https://github.com/FrantzCFelix/RINQYDINK), and see the app in operation [here](https://rinqydinky.herokuapp.com/).
 
@@ -22,7 +22,7 @@ This app runs in the browser - see [Setup](#setup) below for instructions on how
 
 ## Screenshots
 
-![Homepage](./public/assets/images/screenshots/homepage.PNG)
+![Homepage](./public/assets/images/screenshots/homepage.png)
 
 ## Technologies
 
@@ -43,7 +43,7 @@ Here are the package.json dependencies:
 
 This package was written in JavaScript using Node.js, and uses `MySQL` (via `sequelize ORM`) to interact with the database. If the GitHub repo is forked, in order to edit the code the user can run `npm i` to install these dependency. `Express` is the module used to create a server, and `express-handlebars` is how the content is being dynamically displayed through a view engine. `materialize-css` works with the front end to style the web-page. `socket.io` and `socket.io-client` are to support the chat window.
 
-All other dependencies not mentioned are related to creating and saving user details either in the database permanently, or in the client for the length of the session, and utilise `bcryptjs` to protect passwords.
+All other dependencies not mentioned are related to creating and saving user details either in the database permanently, or in the client for the length of the session, and utilize `bcryptjs` to protect passwords.
 
 The app is hosted via `Heroku` in order to facilitate the necessity of running a live server.
 
@@ -197,4 +197,4 @@ Multiplayer.....................................
 
 ## Contact
 
-Created by [@agtravis](https://agtravis.github.io/) | [@agtravis](https://agtravis.github.io/) | [@agtravis](https://agtravis.github.io/)
+Created by [@agtravis](https://agtravis.github.io/) | [@agtravis](https://agtravis.github.io/) | [@ddhoang21](https://ddhoang21.github.io/My-Portfolio/)
