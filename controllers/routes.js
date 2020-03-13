@@ -202,7 +202,7 @@ module.exports = (app, sequelize) => {
 
     const mailOptions = {
       from: `"Rinqydink Arcade Form" <rinqydinkarcade@gmail.com>`,
-      to: `ddhoang1993@gmail.com`,
+      to: `rinqydinkarcade@yahoo.com`,
       subject: `Rinqydink Submission`,
       text: `new feedback/suggestions`,
       html: output
