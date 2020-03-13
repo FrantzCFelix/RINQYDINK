@@ -2,6 +2,7 @@
 const bcrypt = require(`bcryptjs`);
 const isAuthenticated = require(`../config/middleware/isAuthenticated`);
 const passport = require(`../config/passport`);
+const nodemailer = require(`nodemailer`);
 const db = require(`../models`);
 
 // eslint-disable-next-line no-unused-vars
@@ -12,10 +13,6 @@ module.exports = (app, sequelize) => {
     } else {
       res.render(`index`);
     }
-  });
-
-  app.get(`/contact`, (req, res) => {
-    res.render(`contact`);
   });
 
   app.get(`/signup`, (req, res) => {
@@ -153,19 +150,6 @@ module.exports = (app, sequelize) => {
     });
   });
 
-  // app.get(`/`, (req, res) => {
-  //   db.HighScore.findAll({
-  //     include: [db.User],
-  //     order: [[`score`, `DESC`]],
-  //     raw: true
-  //   }).then(dbScore => {
-  //     const highScoresObj = {
-  //       highScores: dbScore
-  //     };
-  //     res.render(`index`, highScoresObj);
-  //   });
-  // });
-
   app.delete(`/api/highscores/:id`, (req, res) => {
     db.HighScore.destroy({
       where: {
@@ -182,6 +166,55 @@ module.exports = (app, sequelize) => {
       UserId: req.user.id
     }).then(() => {
       res.redirect(`/leaderboard`);
+    });
+  });
+
+  app.get(`/contact`, (req, res) => {
+    res.render(`contact`);
+  });
+
+  // eslint-disable-next-line no-unused-vars
+  app.post(`/send`, (req, res) => {
+    const output = `
+      <p>New submission for Rinqydink Arcade</p>
+      <h3>Contact Details</h3>
+      <ul>
+        <li>First Name: ${req.body.firstname}</li>
+        <li>Last Name: ${req.body.lastname}</li>
+        <li>Email: ${req.body.email}</li>
+      </ul>
+      <h3>Message</h3>
+      <p>${req.body.message}</p>
+    `;
+
+    const transporter = nodemailer.createTransport({
+      service: `gmail`,
+      auth: {
+        user: `rinqydinkarcade@gmail.com`,
+        pass: `#MyPassword!`
+      },
+      tls:{
+        rejectUnauthorized:false
+      },
+      logger: true
+    });
+
+    const mailOptions = {
+      from: `"Rinqydink Arcade Form" <rinqydinkarcade@gmail.com>`,
+      to: `rinqydinkarcade@yahoo.com`,
+      subject: `Rinqydink Submission`,
+      text: `new feedback/suggestions`,
+      html: output
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        return console.log(error);
+      }
+      console.log(`Message sent: %s`, info.messageId);
+      console.log(`Preview URL: %s`, nodemailer.getTestMessageUrl(info));
+
+      res.render(`contact`, { message:`Thank you for your feedback!` });
     });
   });
 };
