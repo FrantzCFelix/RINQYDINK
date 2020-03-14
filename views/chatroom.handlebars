@@ -1,0 +1,41 @@
+<div class="navbar-fixed black">
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo">👽Chat🎮Room👾</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="/members">Menu</a></li>
+                <li><a href="/profile">Profile</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<div class="container">
+    <div class="row equal-height-grid">
+        <div class="col s12">
+            <div class="card">
+                <div class="card-content userNameDiv"></div>
+
+                <div class="divider"></div>
+
+                <div class="card-content chatArea">
+                    <ul class="chat-wrapper messages"
+                        style="overflow-y: scroll !important; height: 600px; overflow-x: hidden;"></ul>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix" style="padding-left: 5px;">chat_bubble</i>
+                        <input id="icon_prefix" class="inputMessage" type="text" />
+                        <label for="icon_prefix">Speak....</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ul class="sidenav" id="mobile-demo">
+    <li><a href="/members">Menu</a></li>
+    <li><a href="/profile">Profile</a></li>
+</ul>
+<br>
