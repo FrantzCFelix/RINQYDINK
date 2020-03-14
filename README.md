@@ -38,6 +38,7 @@ Here are the package.json dependencies:
         "express-handlebars": "^3.1.0",
         "express-session": "^1.17.0",
         "mysql2": "^2.1.0",
+        "nodemailer": "^6.4.5",
         "passport": "^0.4.1",
         "passport-local": "^1.0.0",
         "sequelize": "^5.21.5",
@@ -47,7 +48,7 @@ Here are the package.json dependencies:
 
 This package was written in JavaScript using Node.js, and uses `MySQL` (via `sequelize ORM`) to interact with the database. If the GitHub repo is forked, in order to edit the code the user can run `npm i` to install these dependency. `Express` is the module used to create a server, and `express-handlebars` is how the content is being dynamically displayed through a view engine. `materialize-css` works with the front end to style the web-page. `socket.io` and `socket.io-client` are to support the chat window.
 
-All other dependencies not mentioned are related to creating and saving user details either in the database permanently, or in the client for the length of the session, and utilize `bcryptjs` to protect passwords.
+All other dependencies not mentioned are related to creating and saving user details either in the database permanently, or in the client for the length of the session, and utilize `bcryptjs` to protect passwords.`nodemailer` was used to send the us form submitted from the contact page.
 
 The app is hosted via `Heroku` in order to facilitate the necessity of running a live server.
 

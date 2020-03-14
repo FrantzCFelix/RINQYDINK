@@ -1,7 +1,11 @@
 {
   "development": {
     "username": "root",
+<<<<<<< HEAD
     "password": "FroonceTheDev_170",
+=======
+    "password": "MyPassword",
+>>>>>>> c0e8ccfd428c8f07e365f02e07d1196c1dc4094c
     "database": "phaser_db",
     "host": "127.0.0.1",
     "dialect": "mysql",
