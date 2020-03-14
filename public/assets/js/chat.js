@@ -27,14 +27,15 @@ $.get(`/api/user_data`).then(userData => {
     // add
     socket.emit(`add user`, username, randomColor);
 
+    // eslint-disable-next-line no-unused-vars
     function addParticipantsMessage (data) {
-      let message = ``;
-      if (data.numUsers === 1) {
-        message += `There's 1 participant`;
-      } else {
-        message += `There are ${data.numUsers} participants`;
-      }
-      log(message);
+      // let message = ``;
+      // if (data.numUsers === 1) {
+      //   message += `There's 1 participant`;
+      // } else {
+      //   message += `There are ${data.numUsers} participants`;
+      // }
+      // log(message);
     }
 
     function sendMessage () {
@@ -119,29 +120,29 @@ $.get(`/api/user_data`).then(userData => {
 
 
     socket.on(`user joined`, data => {
-      log(`${data.username } joined`);
+      // log(`${data.username } joined`);
       addParticipantsMessage(data);
     });
 
     socket.on(`user left`, data => {
-      log(`${data.username } left`);
+      // log(`${data.username } left`);
       addParticipantsMessage(data);
 
     });
 
     socket.on(`disconnect`, () => {
-      log(`you have been disconnected`);
+      // log(`you have been disconnected`);
     });
 
     socket.on(`reconnect`, () => {
-      log(`you have been reconnected`);
+      // log(`you have been reconnected`);
       if (username) {
         socket.emit(`add user`, username);
       }
     });
 
     socket.on(`reconnect_error`, () => {
-      log(`attempt to reconnect has failed`);
+      // log(`attempt to reconnect has failed`);
     });
 
   });
