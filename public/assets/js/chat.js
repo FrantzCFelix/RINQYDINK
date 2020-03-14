@@ -11,6 +11,7 @@ $.get(`/api/user_data`).then(userData => {
     const $inputMessage = $(`.inputMessage`);
     const $UsersName = $(`.userNameDiv`);
     const ENTER = 13;
+    const SPACE = 32;
 
     // Prompt for setting a username
     const username = userData.username || `error`;
@@ -67,7 +68,7 @@ $.get(`/api/user_data`).then(userData => {
       const $messageBodyDiv = $(`<span class="messageBody">`)
         .text(data.message);
 
-      const $messageDiv = $(`<li class="message card-action green lighten-5"/>`)
+      const $messageDiv = $(`<li class="message card-action"/>`)
         .data(`username`, data.username)
         .append($usernameDiv, $messageBodyDiv);
 
@@ -85,6 +86,12 @@ $.get(`/api/user_data`).then(userData => {
 
     $window.keydown(event => {
     // When the client hits ENTER on their keyboard
+      if(event.which === SPACE)
+      {
+
+        $(`.inputMessage`).val(`${$(`.inputMessage`).val() } `);
+      }
+
       if (event.which === ENTER) {
         sendMessage();
       }
@@ -139,3 +146,4 @@ $.get(`/api/user_data`).then(userData => {
 
   });
 });
+
