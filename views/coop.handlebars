@@ -10,23 +10,40 @@
         </div>
     </nav>
 </div>
+<div class="container">
+    <div class="row">
+
+        <div class="col m12 s12">
+            <div id="GameCanvas"></div>
+        </div>
+        <div class="col s12 m12">
+            <div class="card">
+                <div class="card-content userNameDiv"></div>
+
+                <div class="divider"></div>
+
+                <div class="card-content chatArea">
+                    <ul class="chat-wrapper messages"
+                        style="overflow-y: scroll !important; height: 600px; overflow-x: hidden;"></ul>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix" style="padding-left: 5px;">chat_bubble</i>
+                        <input id="icon_prefix" class="inputMessage" type="text" />
+                        <label for="icon_prefix">Speak....</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
 
 <ul class="sidenav" id="mobile-demo">
     <li><a href="/members">Menu</a></li>
     <li><a href="/profile">Profile</a></li>
 </ul>
 <br>
-<div class="row">
-    <div class="col s6" id="GameCanvas"></div>
-    <div class="col s1"></div>
-    <div class="col s4">
-        <ul id="messages"></ul>
-        <form id="chat-window" action="">
-            <input id="m" autocomplete="off" />
-            <button class="btn waves-effect waves-light indigo darken-4" type="submit" name="action">Talk
-                <i class="material-icons right">send</i>
-            </button>
-        </form>
-    </div>
-    <div class="col s1"></div>
+
 </div>

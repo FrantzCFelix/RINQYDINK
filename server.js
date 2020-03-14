@@ -33,47 +33,54 @@ require(`./controllers/routes.js`)(app, db.sequelize);
 
   const io = socketIO(server);
 
-  io.use((socket, next) => {
-    const { username } = socket.handshake.query;
-    const { id } = socket.handshake.query;
-    if (username || id) {
-      return next();
+  let numUsers = 0;
+
+io.on('connection', (socket) => {
+  var addedUser = false;
+
+  // When the client emits 'new message', this listens and executes
+  socket.on('new message', (data) => {
+     // The client will execute 'new message'
+    socket.broadcast.emit('new message', {
+      username: socket.username,
+      message: data
+    });
+  });
+
+  // when the client emits 'add user', this listens and executes
+  socket.on('add user', (username , randomColor) => {
+      //if user already exsists do nothing
+    if (addedUser) return;
+
+    // we store the username in the socket session for this client
+    socket.username = username;
+    socket.randomColor = randomColor;
+    ++numUsers;
+    addedUser = true;
+    socket.emit('login', {
+      numUsers: numUsers
+    });
+    // echo globally (all clients) that a person has connected
+    socket.broadcast.emit('user joined', {
+      username: socket.username,
+      numUsers: numUsers
+    });
+  });
+
+
+  // when the user disconnects.. perform this
+  socket.on('disconnect', () => {
+    if (addedUser) {
+      --numUsers;
+
+      // echo globally that this client has left
+      socket.broadcast.emit('user left', {
+        username: socket.username,
+        numUsers: numUsers
+      });
     }
-    return next(new Error(`error receiving user's name`));
   });
-
-  // back up ID if query in handshake is empty
-  let logId = 0;
-  io.on(`connection`, socket => {
-  //console.log(socket.handshake)
-    io.engine.generateId = (req) => {
-      // custom id must be unique
-      // this code will help inform you if youre missing user name data from the handshake.
-      // console.log(req._query);
-     let { username } = req._query;
-     let { id } = req._query;
-
-      if(username !== 'undefined')
-      {
-        return `User: ${username}`; // custom id must be unique
-      } 
-      else if (id !== 'undefined') {
-        return `Anonymous: ${id}`;
-      }
-       else {
-        return `Log: ${logId++}`;
-      }
-      
-    };
-    console.log(` ${socket.id} connected`);
-    socket.on(`chat message`, msg => {
-      io.sockets.emit(`chat message`, msg);
-      console.log(`${socket.id} said ${msg}`);
-    });
-    socket.on(`disconnect`, () => {
-      console.log(`${socket.id} disconected`);
-    });
-  });
+});
 })();
 /** ********TO DEBUG(client side)**********
   Paste localStorage.debug = '*'; into broswer console
