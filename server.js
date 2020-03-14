@@ -50,16 +50,16 @@ require(`./controllers/routes.js`)(app, db.sequelize);
     const { id } = socket.handshake.query;
 
     io.engine.generateId = () => {
-        // custom id must be unique
+      // custom id must be unique
       // this code will help inform you if youre missing data from the handshake.
       if(!username === undefined)
       {
         return `User: ${username}`; // custom id must be unique
-      } 
+      }
       else if (!id === undefined) {
         return `Anonymous: ${id}`;
       }
-       else {
+      else {
         return `Log: ${logId}`;
       }
     };
@@ -78,16 +78,16 @@ require(`./controllers/routes.js`)(app, db.sequelize);
   ***************************/
 
 
-const UserDAO = require('./src/main/daos/UsersDAO');
-app.get('/test', async (req, res) => {
-  //note async here
-  let user = await UserDAO.getOneUser();
+const UserDAO = require(`./src/main/daos/UsersDAO`);
+app.get(`/test`, async (req, res) => {
+  // note async here
+  const user = await UserDAO.getOneUser();
   res.json(user);
 });
 
-const HighscoreDAO = require('./src/main/daos/HighscoresDAO');
-app.get('/test', async (req, res) => {
-  //note async here
-  let highscore = await HighscoreDAO.getOneHighscore();
+const HighscoreDAO = require(`./src/main/daos/HighscoresDAO`);
+app.get(`/test`, async (req, res) => {
+  // note async here
+  const highscore = await HighscoreDAO.getOneHighscore();
   res.json(highscore);
 });

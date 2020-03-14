@@ -190,7 +190,7 @@ module.exports = (app, sequelize) => {
     const transporter = nodemailer.createTransport({
       service: `gmail`,
       auth: {
-        user: `rinqydinkarcade@gmail.com`,
+        user: `rinqydinkarcadenoreply@gmail.com`,
         pass: `#MyPassword!`
       },
       tls:{
@@ -200,10 +200,10 @@ module.exports = (app, sequelize) => {
     });
 
     const mailOptions = {
-      from: `"Rinqydink Arcade Form" <rinqydinkarcade@gmail.com>`,
+      from: `"Rinqydink Arcade" <rinqydinkarcadenoreply@gmail.com>`,
       to: `rinqydinkarcade@yahoo.com`,
-      subject: `Rinqydink Submission`,
-      text: `new feedback/suggestions`,
+      subject: `Contact Form`,
+      text: `New Message`,
       html: output
     };
 
