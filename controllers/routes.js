@@ -76,6 +76,9 @@ module.exports = (app, sequelize) => {
       res.render(`leaderboard`, highScoresObj);
     });
   });
+  app.get(`/chatroom`, isAuthenticated, (req, res) => {
+    res.render(`chatroom`);
+  });
 
   app.post(`/api/login`, passport.authenticate(`local`), (req, res) => {
     const user = { user: req.user };
