@@ -4,7 +4,6 @@ const isAuthenticated = require(`../config/middleware/isAuthenticated`);
 const passport = require(`../config/passport`);
 const nodemailer = require(`nodemailer`);
 const db = require(`../models`);
-require(`dotenv`).config();
 
 // eslint-disable-next-line no-unused-vars
 module.exports = (app, sequelize) => {
@@ -192,7 +191,7 @@ module.exports = (app, sequelize) => {
       service: `gmail`,
       auth: {
         user: `rinqydinkarcade@gmail.com`,
-        pass: process.env.GMAIL_PASSWORD
+        pass: `#MyPassword!`
       },
       tls:{
         rejectUnauthorized:false
