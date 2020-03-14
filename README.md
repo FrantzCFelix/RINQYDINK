@@ -4,7 +4,7 @@
 
 ![Homepage](./public/assets/images/screenshots/UML.png)
 
-This is an app based on classic video game arcades from the 80s & early 90s. Kids used to come to play games, yes, but also to socialize and get human interaction. In the days of headsets, high-tech games, and high-speed internet connections, this app hopes to encapsulate the magic of an era lost to history along and combine it with the connectivity of today. Users are able to create their accounts and therefore compare high scores, and interact with each other in real time either by playing multiplayer or simply using the chat feature.
+This is an app based on classic video game arcades from the 80s & early 90s. Kids used to come to play games, yes, but also to socialize and get human interaction. In the days of headsets, high-tech games, and high-speed internet connections, this app hopes to encapsulate the magic of an era lost to history along and combine it with the connectivity of today. Users are able to create their accounts and therefore compare high scores, and interact with each other in real time either by ~~playing multiplayer~~ or simply using the chat feature.
 
 Check out the repo [here](https://github.com/FrantzCFelix/RINQYDINK), and see the app in operation [here](https://rinqydinky.herokuapp.com/).
 
@@ -27,6 +27,7 @@ This app runs in the browser - see [Setup](#setup) below for instructions on how
 ![Homepage](./public/assets/images/screenshots/instructions.PNG)
 ![Homepage](./public/assets/images/screenshots/game-chat.png)
 ![Homepage](./public/assets/images/screenshots/leaderboard.PNG)
+![Homepage](public\assets\images\screenshots\chat-screen-shot.png)
 
 ## Technologies
 
@@ -48,7 +49,7 @@ Here are the package.json dependencies:
 
 This package was written in JavaScript using Node.js, and uses `MySQL` (via `sequelize ORM`) to interact with the database. If the GitHub repo is forked, in order to edit the code the user can run `npm i` to install these dependency. `Express` is the module used to create a server, and `express-handlebars` is how the content is being dynamically displayed through a view engine. `materialize-css` works with the front end to style the web-page. `socket.io` and `socket.io-client` are to support the chat window.
 
-All other dependencies not mentioned are related to creating and saving user details either in the database permanently, or in the client for the length of the session, and utilize `bcryptjs` to protect passwords.`nodemailer` was used to send the us form submitted from the contact page.
+All other dependencies not mentioned are related to creating and saving user details either in the database permanently, or in the client for the length of the session, and utilize `bcryptjs` to protect passwords. `nodemailer` was used to send the us form submitted from the contact page.
 
 The app is hosted via `Heroku` in order to facilitate the necessity of running a live server.
 
@@ -180,6 +181,58 @@ Finally let's look at a delete. If the user clicks on a delete button for a high
 
 `destroy` is the method used to identify the specific record of the `HighScores` table. For this route, instead of passing the ID of the record as part of the object (`req.body.id`), the ID is passed using the parameters variable (`/:id` == `req.params.id`).
 
+## Socket.io
+
+### Socket.io-UML
+
+![Homepage](public\assets\images\screenshots\socket-io-uml.png)
+
+Each one of the above bubble is a different repo that each part of socket.io lives and how they are connected.
+
+### How It Works
+
+---
+
+#### engine.io-parser
+
+This is the JavaScript parser for the engine.io protocol encoding
+
+#### engine.io-
+
+Engine.IO is the implementation of transport-based cross-browser/cross-device bi-directional communication layer for Socket.IO.
+Its main feature is the ability to swap transports on the fly. A connection starts with XHR polling, but can then switch to WebSocket if possible. (So does engine.io-client)
+
+#### engine.io-client
+
+This is the client for Engine.IO, the implementation of transport-based cross-browser/cross-device bi-directional communication layer for Socket.IO. It runs in both the browser and Node.js. It uses the engine.io-parser to encode/decode packets.
+
+#### socket.io-adapter
+
+This is the default Socket.IO in-memory adapter class. This module is not intended for end-user usage, but can be used as an interface to inherit from from other adapters you might want to build, like socket.io-redis.
+
+#### socket.io-redis
+
+This is the adapter using the Redis Pub/Sub mechanism to broadcast messages between multiple nodes.
+
+#### socket.io-parser
+
+A socket.io encoder and decoder written in JavaScript complying with version 3 of socket.io-protocol. Used by socket.io and socket.io-client.
+
+#### socket.io-
+
+Socket.IO brings some syntactic sugar over the Engine.IO “raw” API. It also brings two new concepts, Rooms and Namespaces, which introduce a separation of concern between communication channels. By default, it exposes a browser build of the client at /socket.io/socket.io.js.
+It uses the socket.io-parser to encode/decode packets.
+
+#### socket.io-client
+
+This is the client for Socket.IO. It relies on engine.io-client, which manages the transport swapping and the disconnection detection.
+It handles reconnection automatically, in case the underlying connection is severed.
+
+#### More socket.io info?
+
+Checkout their docs at https://socket.io/docs/
+Their github repo can be found here https://github.com/socketio
+
 ## Setup
 
 To set up this app as a user, you simply go to the website [here](https://rinqydinky.herokuapp.com/) and sign up for an account. All it requires is a username and password. From that point you are automatically logged in and ready to go, or on following visits you would login with those credentials. All your scores are stored in your own personal history, and users can delete any scores of their own with which they are unhappy. Users can also change their password from inside their profile.
@@ -202,4 +255,4 @@ Multiplayer.....................................
 
 ## Contact
 
-Created by [@agtravis](https://agtravis.github.io/) | [@agtravis](https://agtravis.github.io/) | [@ddhoang21](https://ddhoang21.github.io/My-Portfolio/)
+Created by [@agtravis](https://agtravis.github.io/) | [@FrantzCFelix](https://frantzcfelix.github.io/index.html) | [@ddhoang21](https://ddhoang21.github.io/My-Portfolio/)
